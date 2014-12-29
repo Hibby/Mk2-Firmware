@@ -35,16 +35,14 @@
 #include <FreeRTOS_ARM.h>
 #include <rtc_clock.h>
 #include "Task.h"
-#include "EMF2014Config.h"
+#include "BadgeConfig.h"
 #include "ButtonSubscription.h"
 #include "RGBTask.h"
 #include "SoundTask.h"
 #include "AppManager.h"
 #include "LCDTask.h"
 #include "GUITask.h"
-#include "SettingsStore.h"
 #include "BatterySaverTask.h"
-#include "RadioReceiveTask.h"
 
 class BadgeNotifications;
 class DataStore;
@@ -60,7 +58,6 @@ public:
     static DataStore& getDataStore();
     static LCDTask& getLCDTask();
     static GUITask& getGUITask();
-    static SettingsStore& getSettingsStore();
     static AppManager& getAppManager();
 
     static char* getUserNameLine1();
@@ -80,8 +77,6 @@ public:
     static Orientation_t getOrientation();
     static uint32_t millisecondsSinceBoot();
     static void markActivity();
-    static char* radioChannelIdentifier();
-    static uint8_t radioRssi();
 private:
     Tilda();
 
@@ -93,7 +88,5 @@ private:
     static DataStore* _dataStore;
     static LCDTask* _lcdTask;
     static GUITask* _guiTask;
-    static SettingsStore* _settingsStore;
     static BatterySaverTask* _batterySaverTask;
-    static RadioReceiveTask* _radioReceiveTask;
 };

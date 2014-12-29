@@ -1,6 +1,28 @@
 TiLDA v2 Firmware
 =================
 
+#### Back To Basics
+This version of the firmware has been stripped back to, what I can see, are just the completed basics for the RTOS version of TiLDA. I can remember removing:
+
+* EMF Radio infrastructure
+  * Messaging
+  * Radio Send/Receive Functions
+* All Apps asides flashlight and hello world
+* IRTask and FlashTask as they were empty
+* SettingsStore and DataStore
+* Probably lots more, there was lots of Mate involved.
+
+My idea is to create a solid platform that anyone can build on top of when developing on the badge. Apps can take advantage of hardware as need be.
+I just wanted more access to the radio and got carried away, really.
+
+#### TODO
+
+* Flash Storage Task
+* SD Card Task
+* IR Task
+* Ethernet Task
+
+
 #### Firmware on the TiLDA v2 Badge
 * To use this code you need Arduino IDE version 1.5.7 or later which can be downloaded [here](http://arduino.cc/en/Main/Software#toc3).
 * The easiest way to work with this repo is to set it as the sketchbook folder in the IDE's File->Preferences menu (restart the IDE after changing this setting).
@@ -22,18 +44,11 @@ TiLDA v2 Firmware
 * You can then select _TiLDA Mk2_ from the _Tools->Board_ menu.
 * To use the **FTDI** upload port you will need to manually erase the board before uploading a new sketch (short the **Erase** pins for 1 second).
 
-#### EMF2014/
+#### Tilda/
 * This is the main sketch for the EMF 2014 firmware.
 * It is complied using the **TiLDA Mk2** board form the the _Tools->Board_ menu.
 * void setup() and void loop() can be found in EMF2014.ino
 * There are several _.c[pp]_ and _.h_ files that make up the _FreeRTOS_ tasks used by the main app.
-
-
-#### frRGBTask/
-* This is the first fully functional test of the RGB Task.
-* Some of the buttons are set up to test the different RGB modes.
-
-
 #### Contributing
 * If you wish to work on code please fork our repo, do your work in a branch and submit a pull request for review
 * Please do not commit to master

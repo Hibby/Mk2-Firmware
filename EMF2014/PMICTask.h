@@ -38,7 +38,7 @@
 
 #include <Arduino.h>
 #include <FreeRTOS_ARM.h>
-#include "EMF2014Config.h"
+#include "BadgeConfig.h"
 #include "Task.h"
 
 #define PMIC_DEFAULT_RATE       15 * 60 * 1000 // 15 minutes

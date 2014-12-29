@@ -32,7 +32,7 @@
 
 #include <Arduino.h>
 #include <FreeRTOS_ARM.h>
-#include "EMF2014Config.h"
+#include "BadgeConfig.h"
 #include "Task.h"
 
 class Tone {

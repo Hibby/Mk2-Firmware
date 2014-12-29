@@ -28,7 +28,6 @@
 
 #include "PMICTask.h"
 #include "Tilda.h"
-#include "BadgeNotifications.h"
 #include <debug.h>
 
 // EventGroup bita
@@ -118,7 +117,6 @@ void PMICTask::task()
     } else if (batteryReading <= PMIC_BATTERY_LOW) {
         // TODO: Low battery notification
         debug::log("PMICTask: Battery Low on startup");
-        Tilda::getBadgeNotifications().pushNotification("Battery low, please charge", RGBColor(0,0,0), RGBColor(0,0,0), false, 1);
 
     }
        
@@ -154,11 +152,9 @@ void PMICTask::task()
             if (batteryReading <= PMIC_BATTERY_VERYLOW) {
                 // TODO: Panic and Charge now notifications
                 debug::log("PMICTask: Battery Very Low");
-                Tilda::getBadgeNotifications().pushNotification("BATTERY VERY LOW, TURN OFF AND CHARGE NOW", RGBColor(255,0,0), RGBColor(255,0,0), true, 1);
             } else if (batteryReading <= PMIC_BATTERY_LOW) {
                 // TODO: Low battery notification
                 debug::log("PMICTask: Battery Low");
-                Tilda::getBadgeNotifications().pushNotification("Battery low, please charge", RGBColor(0,0,0), RGBColor(0,0,0), false, 1);
             }
         }
 

@@ -64,7 +64,8 @@ void setup() {
     // Setup radio pins
     pinMode(SRF_AT_COMMAND, OUTPUT);
     pinMode(SRF_SLEEP, OUTPUT);
-
+    pinMode(LCD_BACKLIGHT, OUTPUT);
+    digitalWrite(LCD_BACKLIGHT, HIGH);
     // Uncomment this to wait for a serial connection before continuing startup
     // while (!SerialUSB);
 

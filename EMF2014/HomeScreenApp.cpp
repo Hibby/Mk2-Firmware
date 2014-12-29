@@ -50,9 +50,8 @@ M2_X2LMENU(el_2lmenu,"l10e1w51",&homeScreenApp_m2_2lmenu_first,&homeScreenApp_m2
 //M2_LIST(list_2lmenu) = { &el_2lmenu, &el_space, &el_vsb };
 //M2_HLIST(el_hlist, NULL, list_2lmenu);
 M2_LABELFN(el_header, "f1", HomeScreenApp::headerText);
-M2_LABELFN(el_footer, "f3", HomeScreenApp::footerText);
 M2_SPACE(el_vspace, "w1h2");
-M2_LIST(list_vspace) = {&el_header, &el_vspace, &el_2lmenu, &el_footer};
+M2_LIST(list_vspace) = {&el_header, &el_vspace, &el_2lmenu};
 M2_VLIST(el_vlist, NULL, list_vspace);
 M2_ALIGN(homeScreenApp_m2_top_el_expandable_menu, "-1|2W64H64", &el_vlist);
 
@@ -109,26 +108,6 @@ const char *HomeScreenApp::headerText(m2_rom_void_p element) {
     }
 }
 
-char footerBuffer[22];
-
-const char *HomeScreenApp::footerText(m2_rom_void_p element) {
-
-    String footer;
-    if (Tilda::radioChannelIdentifier()[0] == '?') {
-        footer = "            " +
-                 String(Tilda::getBatteryPercent()) + "%";
-    } else {
-        footer = String(Tilda::radioChannelIdentifier()) +
-                 " -" +
-                 String(Tilda::radioRssi()) +
-                 "    " +
-                 String(Tilda::getBatteryPercent()) + "%";
-    }
-
-    footer.toCharArray(footerBuffer, 22);
-    return footerBuffer;
-}
-
 void HomeScreenApp::task() {
     eventGroup = xEventGroupCreate();
     Tilda::getGUITask().setOrientation(ORIENTATION_HELD);
@@ -175,18 +154,16 @@ void HomeScreenApp::task() {
 void HomeScreenApp::drawHungScreen() {
     Tilda::getGUITask().setOrientation(ORIENTATION_HUNG);
     Tilda::getGUITask().clearRoot();
-    Tilda::log(Tilda::getUserNameLine1());
-    Tilda::log(Tilda::getUserNameLine2());
-    if (*(Tilda::getUserNameLine1()) == 0 && *(Tilda::getUserNameLine2()) == 0) { // No name set
         GLCD.DrawBitmap(TiLDA_Logo_64x128 ,0, 0); // Full Screen Image
-    } else {
-        GLCD.SelectFont(System5x7);
-
-        GLCD.DrawString(Tilda::getUserNameLine1(),2,8);
-        GLCD.DrawString(Tilda::getUserNameLine2(),2,16);
-        GLCD.DrawBitmap(TiLDA_64x96,0,32);
-
-    }
+	/* 	
+	In case you want to write things on the screen instead
+	GLCD.SelectFont(System5x7);	
+        GLCD.DrawString("Hey, I'm",0,0);
+	GLCD.SelectFont(Arial14);
+	GLCD.DrawString("text",0,8);
+	GLCD.SelectFont(Corsiva_12);
+	GLCD.DrawString("and fonts",0,16);
+	*/
 }
 
 void HomeScreenApp::afterSuspension() {}

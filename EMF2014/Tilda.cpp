@@ -41,13 +41,8 @@ RGBTask* Tilda::_rgbTask = NULL;
 SoundTask* Tilda::_soundTask = NULL;
 AppManager* Tilda::_appManager = NULL;
 RTC_clock* Tilda::_realTimeClock = NULL;
-BadgeNotifications* Tilda::_badgeNotifications = NULL;
-DataStore* Tilda::_dataStore = NULL;
 LCDTask* Tilda::_lcdTask = NULL;
 GUITask* Tilda::_guiTask = NULL;
-SettingsStore* Tilda::_settingsStore = NULL;
-BatterySaverTask* Tilda::_batterySaverTask = NULL;
-RadioReceiveTask* Tilda::_radioReceiveTask = NULL;
 
 Tilda::Tilda() {}
 
@@ -97,13 +92,6 @@ RTC_clock& Tilda::getClock() {
     return *_realTimeClock;
 }
 
-BadgeNotifications& Tilda::getBadgeNotifications() {
-    return *_badgeNotifications;
-}
-
-DataStore& Tilda::getDataStore() {
-    return *_dataStore;
-}
 
 LCDTask& Tilda::getLCDTask() {
     return *_lcdTask;
@@ -113,24 +101,8 @@ GUITask& Tilda::getGUITask() {
     return *_guiTask;
 }
 
-SettingsStore& Tilda::getSettingsStore() {
-    return *_settingsStore;
-}
-
 AppManager& Tilda::getAppManager() {
     return *_appManager;
-}
-
-float Tilda::getBatteryVoltage() {
-    return PMIC.getBatteryVoltage();
-}
-
-uint8_t Tilda::getBatteryPercent() {
-    return PMIC.getBatteryPercent();
-}
-
-uint8_t Tilda::getChargeState() {
-    return PMIC.getChargeState();
 }
 
 Orientation_t Tilda::getOrientation() {
@@ -139,24 +111,4 @@ Orientation_t Tilda::getOrientation() {
 
 uint32_t Tilda::millisecondsSinceBoot() {
     return xTaskGetTickCount();
-}
-
-void Tilda::markActivity() {
-    _batterySaverTask->markActivity();
-}
-
-char* Tilda::radioChannelIdentifier() {
-    return _radioReceiveTask->channelIdentifier();
-}
-
-uint8_t Tilda::radioRssi() {
-    return _radioReceiveTask->rssi();
-}
-
-char* Tilda::getUserNameLine1() {
-    return _settingsStore->getUserNameLine1();
-}
-
-char* Tilda::getUserNameLine2() {
-    return _settingsStore->getUserNameLine2();
 }

@@ -33,7 +33,7 @@
 
 #include <Arduino.h>
 #include <FreeRTOS_ARM.h>
-#include "EMF2014Config.h"
+#include "BadgeConfig.h"
 #include "Task.h"
 
 #define INITIAL_COLOR 0, 0, 0
